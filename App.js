@@ -1,142 +1,82 @@
- import React from 'react';
-
- import {
-   SafeAreaView,
-   ScrollView,
-   StatusBar,
-   StyleSheet,
-   Text,
-   useColorScheme,
-   Image,
-   View,
-   TextInput,
-   TouchableOpacity,
- } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
- 
- const imageicon = {uri: "https://www.riotgames.com/darkroom/original/354d0e8b7bc007f90345b4cc32e74ad1:428a0a83efb4aabcac5a25efaee41b1e/riot-pairedlogo-red-rgb.png"}
- 
- const App = () => {
-   return (
-
-     <View style={styles.container}>
-       <View style={{flexDirection:"row",flex:1}}>
-       <Image source ={imageicon} style={styles.logoImg} resizeMode={"cover"}/>
-      </View>
-
-      <TouchableOpacity
-        style={styles.botaox}>
-        <Text
-        style={styles.xxxx}> 
-         X
-        </Text>
-      </TouchableOpacity>
-
-       <Text style={styles.texto}>
-         Iniciar o estresse
-       </Text>
-
-       <TextInput 
-       style={styles.barraescrita}
-       placeholder="NOME DO USUARIO"/>
-
-      <TextInput 
-       style={styles.barraescrita}
-       secureTextEntry={true}
-       placeholder="SENHA"/>
-
-      <TouchableOpacity>
-        <Text
-        style={styles.textinhomaroto}> 
-         NÃO CONSEGUE FAZER O LOGIN?
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.botaoseta}>
-        <Text
-        style={styles.seta}> 
-         ➜
-        </Text>
-      </TouchableOpacity>
-
-     </View>
-   );
- };
- 
- const styles = StyleSheet.create({
-
-  conteiner:{
-  flex:1,
-  justifyContent: "center",
-  alignItems: "center"
-  },
-  
-  texto:{
-  marginTop:30,
-  marginLeft:30,
-  marginBottom:30,
-  color: "black",
-  fontWeight: "bold",
-  fontSize: 30,
-  },
-
-  logoImg: {
-    marginTop:30,
-    width: 150,
-    height: 50,
-    marginLeft:30,
-    },
-
-  barraescrita:{
-    marginTop:10,
-    marginLeft:30,
-    backgroundColor: "#EFEFEF",
-    width: 400,
-    fontSize: 16,
-    borderRadius: 3
-  },
-  
-  botaox:{
-    marginLeft:30,
-    width:60,
-    height:60,
-    borderRadius:10,
-    backgroundColor: "#EFEFEF",
-    marginLeft:650
-  },
-
-  xxxx:{
-  marginTop:10,
-  fontSize: 30,
-  alignSelf: "center"
-  },
-
-  textinhomaroto:{
-    color:"#626262",
-    marginLeft:30,
-  },
-
-  botaoseta:{
-    marginTop:10,
-    marginLeft:30,
-    width:60,
-    height:60,
-    borderRadius:10,
-    marginLeft:650
-  },
-
-  seta:{
-    marginTop:10,
-    fontSize: 30,
-    alignSelf: "center",
-    borderRadius: 400,
-    borderColor: "#626262",
-    tintColor: "#626262",
-    },
+import React from 'react';
+import 'react-native-gesture-handler';
+import Jogo from './componetes/jogo';
+import Configuracao from './componetes/Configuracao';
 
 
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  Image,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Button,
+} from 'react-native';
 
- });
- 
- export default App;
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const imagetft = {uri: "https://img.ibxk.com.br/2020/03/18/18122831750006.jpg?w=704&h=264&mode=crop&scale=both"}
+
+const Stack =createStackNavigator();
+
+const Tft = ({navigation}) => {
+  return (
+    <View>
+
+    <Image source ={imagetft} style={styles.pinguImg} resizeMode={"cover"}/>
+
+      <Button title="Jogo"
+       onPress={() => {navigation.navigate(Jogo);
+       }}/>
+      <Button title="Configuracao"
+       onPress={() => {navigation.navigate(Configuracao);
+       }}/>
+    </View>
+  )
+}
+
+// const Details = ({navigation}) => {
+//   return (
+//     <View>
+//       <Button title="Jogar"
+//        onPress={() => {navigation.navigate(Jogo);
+//        }}/>
+//         <Button title="Configuracao"
+//        onPress={() => {navigation.navigate('Configuracao');
+//        }}/>
+//     </View>
+//   )
+// }
+
+const App = () => {
+  return (
+    <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Team Fight Tatics"component={Tft} />
+          <Stack.Screen name="Jogo"component={Jogo} />
+          <Stack.Screen name="Configuracao"component={Configuracao} />
+        </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const styles = StyleSheet.create({
+
+  pinguImg: {
+      marginLeft:30,
+      marginTop:5,
+      width: 700,
+      height: 200,
+      marginLeft:25,
+      marginBottom:30,
+      borderRadius: 30
+      },
+    })
+
+export default App;
